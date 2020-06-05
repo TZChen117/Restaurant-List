@@ -7,7 +7,15 @@
 -  使用餐廳名稱或類別搜尋
    -  檢視餐廳詳細資訊包含類別、地址、電話、描述及照片
 
-## 安裝
+## 環境建置與需求 - Prerequisites
+
+-  Node.js: v12.17.0
+-  Express: v4.17.1
+-  Express-Handlebars: v4.0.4
+-  Nodemon: v2.0.4
+
+## 安裝與執行步驟 - Installation and execution
+
 1. 開啟終端機(Terminal)，Clone此專案到本機位置:
 ```
 git clone https://github.com/TZChen117/Restaurant-List.git
