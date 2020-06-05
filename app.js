@@ -1,9 +1,9 @@
 // includes express and handlebars
 const express = require('express')
-const exphbs = require('express-handlebars')
-const restaurantList = require('./restaurant.json')
 const app = express()
 const port = 3000
+const exphbs = require('express-handlebars')
+const restaurantList = require('./restaurant.json')
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
@@ -20,8 +20,9 @@ app.get('/restaurants/:restaurant_id', (req, res) => {
 })
 
 app.get('/search/', (req, res) => {
-  const restaurants = restaurantList.results.filter(restaurant => restaurant.name.toLowerCase().includes(req.query.keyword.toLowerCase()))
-  res.render('index', { restaurants: restaurants, keyword: req.query.keyword })
+  const keyword = req.query.keyword
+  const restaurants = restaurantList.results.filter(restaurant => restaurant.name.toLowerCase().includes(keyword.toLowerCase()) || restaurant.category.toLowerCase().includes(keyword.toLowerCase()))
+  res.render('index', { restaurants: restaurants, keyword: keyword })
 })
 
 app.listen(port, () => {
