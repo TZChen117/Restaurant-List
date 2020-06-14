@@ -1,14 +1,62 @@
 // includes express and handlebars
 const express = require('express')
-const app = express()
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 const exphbs = require('express-handlebars')
+const bodyParser = require('body-parser')
 const restaurantList = require('./restaurant.json')
+const app = express()
 const port = 3000
+
+mongoose.connect('mongodb://localhost/restaurant_list', { useNewUrlParser: true, useUnifiedTopology: true })
+
+const db = mongoose.connection
+
+db.on('error', () => {
+  console.log('mongodb error!!!')
+})
+
+db.once('open', () => {
+  console.log('mongodb connected!')
+})
+const restaurantSchema = new Schema({
+  id: {
+    type: Number,
+    required: true,
+  },
+  name: {
+    type: String,
+    required: true,
+  },
+  category: {
+    type: String,
+    required: true,
+  },
+  image: {
+    type: String,
+    required: true,
+  },
+  location: {
+    type: String,
+    required: true,
+  },
+  rating: {
+    type: Number,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+})
+module.exports = mongoose.model('Restaurant', restaurantSchema)
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
 app.use(express.static('public'))
+
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get('/', (req, res) => {
   res.render('index', { restaurants: restaurantList.results })
