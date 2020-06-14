@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const Restaurant = require('./models/restaurant')
+const restaurant = require('./models/restaurant')
 const app = express()
 const port = 3000
 
@@ -26,20 +27,24 @@ app.use(express.static('public'))
 
 app.use(bodyParser.urlencoded({ extended: true }))
 
+//查看全部資料
 app.get('/', (req, res) => {
-  res.render('index', { restaurants: restaurantList.results })
+  Restaurant.find()
+    .lean()
+    .then((restaurants) => res.render('index', { restaurants }))
+    .catch(error => console.log(error))
 })
 
-app.get('/restaurants/:restaurant_id', (req, res) => {
-  const restaurant = restaurantList.results.find(restaurant => restaurant.id.toString() === req.params.restaurant_id)
-  res.render('show', { restaurant: restaurant })
-})
+// app.get('/restaurants/:restaurant_id', (req, res) => {
+//   const restaurant = restaurantList.results.find(restaurant => restaurant.id.toString() === req.params.restaurant_id)
+//   res.render('show', { restaurant: restaurant })
+// })
 
-app.get('/search/', (req, res) => {
-  const keyword = req.query.keyword
-  const restaurants = restaurantList.results.filter(restaurant => restaurant.name.toLowerCase().includes(keyword.toLowerCase()) || restaurant.category.toLowerCase().includes(keyword.toLowerCase()))
-  res.render('index', { restaurants: restaurants, keyword: keyword })
-})
+// app.get('/search/', (req, res) => {
+//   const keyword = req.query.keyword
+//   const restaurants = restaurantList.results.filter(restaurant => restaurant.name.toLowerCase().includes(keyword.toLowerCase()) || restaurant.category.toLowerCase().includes(keyword.toLowerCase()))
+//   res.render('index', { restaurants: restaurants, keyword: keyword })
+// })
 
 app.listen(port, () => {
   console.log(`List from http://localhost:${port}`)
