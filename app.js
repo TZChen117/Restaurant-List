@@ -87,8 +87,6 @@ app.post('/restaurants/:id/edit', (req, res) => {
       restaurant.name = name
       restaurant.name_en = name_en
       restaurant.category = category
-      restaurant.category = category
-      restaurant.phone = phone
       restaurant.phone = phone
       restaurant.image = image
       restaurant.location = location
@@ -102,11 +100,19 @@ app.post('/restaurants/:id/edit', (req, res) => {
 })
 
 
-// app.get('/search/', (req, res) => {
-//   const keyword = req.query.keyword
-//   const restaurants = restaurantList.results.filter(restaurant => restaurant.name.toLowerCase().includes(keyword.toLowerCase()) || restaurant.category.toLowerCase().includes(keyword.toLowerCase()))
-//   res.render('index', { restaurants: restaurants, keyword: keyword })
-// })
+app.get('/search', (req, res) => {
+  const keyword = req.query.keyword
+  Restaurant.find()
+    .lean()
+    .then(restaurants => {
+      return restaurants.filter(restaurant =>
+        restaurant.name.includes(keyword) || 
+        restaurant.category.toLowerCase().includes(keyword)
+      )
+    })
+    .then((restaurants) => res.render('index', { restaurants, keyword }))
+    .catch(error => console.log(error))
+})
 
 app.listen(port, () => {
   console.log(`List from http://localhost:${port}`)
