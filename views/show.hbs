@@ -17,14 +17,19 @@
 <div class="container">
   <div class="row">
     <div class="col-12 col-md-10 mx-auto">
+      <div class="mb-1 row justify-content-end">
+        <a href="/restaurants/{{ restaurant._id}}/edit" class="col-1"><u>Edit</u></a>
+        <a href="/" class="col-1"><u>Back</u></a>
+        <form class="col-1" action="/restaurants/{{ restaurant._id }}/delete" method="POST" style="display: inline;">
+          <button type="submit">Delete</button>
+        </form>
+      </div>
       <p class="mb-1">
         <span class="text-secondary">
           <i class="fas fa-utensils pr-2"></i>
           類別：
         </span>
         {{restaurant.category}}
-        <a href="/restaurants/{{ restaurant._id}}/edit" class="col-1">Edit</a>
-        <a href="/" class="col-1">Back</a>
       </p>
 
       <p class="mb-1">

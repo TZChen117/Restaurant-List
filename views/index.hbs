@@ -57,12 +57,13 @@
             </div>
           </div>
         </a>
-        <a href="./restaurants/{{ this._id }}">
-          <button class="mb-2">Detail</button>
-        </a>
-        <a href="./restaurants/{{ this._id }}/edit">
-          <button class="mb-2">Edit</button>
-        </a>
+        <div class="row justify-content-end mb-1">
+          <a class="mx-1" href="./restaurants/{{ this._id }}"><u>Detail</u></a>
+          <a class="mx-1"href="./restaurants/{{ this._id }}/edit"><u>Edit</u></a>
+          <form class="mx-1" action="./restaurants/{{ this._id }}/delete" method="POST" style="display: inline;">
+            <button type="submit">Delete</button>
+          </form>
+        </div>
         {{/each}}
       </div>
     </div>
