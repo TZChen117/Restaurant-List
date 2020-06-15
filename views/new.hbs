@@ -1,0 +1,85 @@
+<form action="/restaurants" method="POST"="create">
+  <div class="container mt-3">
+    <div class="row">
+      <div class="col-12 col-md-10 mx-auto">
+        <div class="mb-1 row">
+          <span class="col-3">
+            <i class="fas fa-utensils"></i> 餐廳名稱(*):
+          </span>
+          <div class="input-group">
+            <input class="col-8" type="text" placeholder="餐廳名稱" name="name" value="">
+          </div>
+        </div>
+        <div class="mb-1 row">
+          <span class="col-3">
+            <i class="fas fa-file-signature"></i> English name:
+          </span>
+          <div class="input-group">
+            <input class="col-8" type="text" placeholder="English name" name="name_en" value="">
+          </div>
+        </div>
+        <div class="mb-1 row">
+          <span class="col-3">
+            <i class="fas fa-filter"></i> 類別(*):
+          </span>
+          <div class="input-group">
+            <input class="col-8" type="text" placeholder="類別" name="category" value="">
+          </div>
+        </div>
+        <div class="mb-1 row">
+          <span class="col-3">
+            <i class="fas fa-phone"></i> 電話(*):
+          </span>
+          <div class="input-group">
+            <input class="col-8" type="text" placeholder="電話" name="phone" value="">
+          </div>
+        </div>
+        <div class="mb-1 row">
+          <span class="col-3">
+            <i class="fas fa-images"></i> 照片:
+          </span>
+          <div class="input-group">
+            <input class="col-8" type="text" placeholder="照片" name="image" value="">
+          </div>
+        </div>
+        <div class="mb-1 row">
+          <span class="col-3">
+            <i class="fas fa-location-arrow"></i> 位置(*):
+          </span>
+          <div class="input-group">
+            <input class="col-8" type="text" placeholder="位置" name="location" value="">
+          </div>
+        </div>
+        <div class="mb-1 row">
+          <span class="col-3">
+            <i class="fas fa-map-marked-alt"></i> Google map:
+          </span>
+          <div class="input-group">
+            <input class="col-8" type="text" placeholder="Google map" name="google_map" value="">
+          </div>
+        </div>
+        <div class="mb-1 row">
+          <span class="col-3">
+            <i class="fas fa-star"></i> 評分(*):
+          </span>
+          <div class="input-group">
+            <input class="col-8" type="text" placeholder="評分" name="rating" value="">
+          </div>
+        </div>
+        <div class="mb-1 row">
+          <span class="col-3">
+            <i class="fas fa-info-circle"></i> 描述:
+          </span>
+          <div class="input-group">
+            </div>
+          <input class="col-8" type="text" placeholder="描述" name="description" placeholder="0~5" step="0.1" min="0" max="5" value="">
+        </div>
+        <small class="col-2">(*):為必填項目</small>
+        <div class="mb-1 mt-2 row justify-content-end">
+          <a href="/" class="col-1">Back</a>
+          <button class="col-2" type="submit">Create</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

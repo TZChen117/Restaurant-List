@@ -2,17 +2,13 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const restaurantSchema = new Schema({
-  id: {
-    type: Number,
+  name: {
+    type: String,
     required: true,
   },
   name_en: {
     type: String,
     required: false,
-  },
-  name: {
-    type: String,
-    required: true,
   },
   category: {
     type: String,
@@ -24,7 +20,7 @@ const restaurantSchema = new Schema({
   },
   image: {
     type: String,
-    required: true,
+    required: false,
   },
   location: {
     type: String,
@@ -40,7 +36,7 @@ const restaurantSchema = new Schema({
   },
   description: {
     type: String,
-    required: true,
+    required: false,
   },
 })
 module.exports = mongoose.model('Restaurant', restaurantSchema)

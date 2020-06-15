@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const Restaurant = require('./models/restaurant')
-const restaurant = require('./models/restaurant')
+
 const app = express()
 const port = 3000
 
@@ -35,10 +35,17 @@ app.get('/', (req, res) => {
     .catch(error => console.log(error))
 })
 
-// app.get('/restaurants/:restaurant_id', (req, res) => {
-//   const restaurant = restaurantList.results.find(restaurant => restaurant.id.toString() === req.params.restaurant_id)
-//   res.render('show', { restaurant: restaurant })
-// })
+//查看新增資料
+app.get('/restaurants/new', (req, res) => {
+  return res.render('new')
+})
+
+app.post('/restaurants', (req, res) => {
+  const restaurant = req.body
+  return Restaurant.create(restaurant)
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
 
 // app.get('/search/', (req, res) => {
 //   const keyword = req.query.keyword

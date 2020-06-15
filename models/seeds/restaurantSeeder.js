@@ -15,9 +15,8 @@ db.once('open', () => {
 
   restaurantList.results.forEach((restaurant) => {
     Restaurant.create({
-      id: restaurant.id,
-      name_en: restaurant.name_en,
       name: restaurant.name,
+      name_en: restaurant.name_en,
       category: restaurant.category,
       phone: restaurant.phone,
       image: restaurant.image,
