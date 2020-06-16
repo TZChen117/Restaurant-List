@@ -3,6 +3,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
 const Restaurant = require('./models/restaurant')
 
 const app = express()
@@ -27,6 +28,8 @@ app.use(express.static('public'))
 
 app.use(bodyParser.urlencoded({ extended: true }))
 
+app.use(methodOverride('_method'))
+
 //查看全部資料
 app.get('/', (req, res) => {
   Restaurant.find()
@@ -35,7 +38,7 @@ app.get('/', (req, res) => {
     .catch(error => console.log(error))
 })
 
-//查看新增資料
+//新增資料
 app.get('/restaurants/new', (req, res) => {
   return res.render('new')
 })
@@ -47,6 +50,7 @@ app.post('/restaurants', (req, res) => {
     .catch(error => console.log(error))
 })
 
+//詳細資料
 app.get('/restaurants/:id', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
@@ -55,6 +59,7 @@ app.get('/restaurants/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
+//詳細資料進行編輯
 app.get('/restaurants/:id/edit', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
@@ -63,14 +68,17 @@ app.get('/restaurants/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
-app.post('/restaurants/:id/delete', (req, res) => {
+//刪除資料
+app.delete('/restaurants/:id', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
     .then(restaurant => restaurant.remove())
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
-app.post('/restaurants/:id/edit', (req, res) => {
+
+//更新編輯資料
+app.put('/restaurants/:id', (req, res) => {
   const id = req.params.id
   const name = req.body.name
   const name_en = req.body.name_en
@@ -99,14 +107,14 @@ app.post('/restaurants/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
-
+//查詢資料
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword
   Restaurant.find()
     .lean()
     .then(restaurants => {
       return restaurants.filter(restaurant =>
-        restaurant.name.includes(keyword) || 
+        restaurant.name.includes(keyword) ||
         restaurant.category.toLowerCase().includes(keyword)
       )
     })
