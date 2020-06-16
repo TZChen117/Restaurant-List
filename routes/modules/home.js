@@ -6,6 +6,40 @@ const Restaurant = require('../../models/restaurant')
 router.get('/', (req, res) => {
   Restaurant.find()
     .lean()
+    .sort({ _id: 'asc' }) // desc(反序)
+    .then((restaurants) => res.render('index', { restaurants }))
+    .catch(error => console.log(error))
+})
+
+//排序查看資料
+router.get('/A~Z', (req, res) => {
+  Restaurant.find()
+    .lean()
+    .sort({ name: 'asc' }) // desc(反序)
+    .then((restaurants) => res.render('index', { restaurants }))
+    .catch(error => console.log(error))
+})
+
+router.get('/Z~A', (req, res) => {
+  Restaurant.find()
+    .lean()
+    .sort({ name: 'desc' }) // desc(反序)
+    .then((restaurants) => res.render('index', { restaurants }))
+    .catch(error => console.log(error))
+})
+
+router.get('/category', (req, res) => {
+  Restaurant.find()
+    .lean()
+    .sort({ category: 'asc' })
+    .then((restaurants) => res.render('index', { restaurants }))
+    .catch(error => console.log(error))
+})
+
+router.get('/location', (req, res) => {
+  Restaurant.find()
+    .lean()
+    .sort({ location: 'asc' })
     .then((restaurants) => res.render('index', { restaurants }))
     .catch(error => console.log(error))
 })
