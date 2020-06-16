@@ -71,19 +71,4 @@ router.put('/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
-//查詢資料
-router.get('/search', (req, res) => {
-  const keyword = req.query.keyword
-  Restaurant.find()
-    .lean()
-    .then(restaurants => {
-      return restaurants.filter(restaurant =>
-        restaurant.name.includes(keyword) ||
-        restaurant.category.toLowerCase().includes(keyword)
-      )
-    })
-    .then((restaurants) => res.render('index', { restaurants, keyword }))
-    .catch(error => console.log(error))
-})
-
 module.exports = router
