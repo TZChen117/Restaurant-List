@@ -1,10 +1,12 @@
-# Restaurant-List-CRUD
+# Restaurant-List
 
 此專案為餐廳清單，使用者可透過搜尋餐廳名稱和分類，來獲得對應到的餐廳資訊，包含餐廳照片、名稱、類別、評分
 
 ## 功能列表
 
 -  使用餐廳名稱或類別搜尋
+
+-  依需求排序餐廳資訊
 
 -  瀏覽餐廳詳細資訊
    -  餐廳詳細資訊包含名稱、類別、地址、電話、描述及照片  
@@ -22,6 +24,7 @@
 -  Nodemon: v2.0.4
 -  Body-Parser: v1.19.0
 -  Mongoose: v5.9.18
+-  Method-override: v3.0.0
 
 ## 安裝與執行步驟 - Installation and execution
 
